@@ -4,7 +4,6 @@ import graphql.GraphQL
 import graphql.schema.idl.RuntimeWiring
 import graphql.schema.idl.SchemaGenerator
 import graphql.schema.idl.SchemaParser
-import jdk.nashorn.internal.runtime.regexp.joni.Config.log
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.io.Resource
@@ -15,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController
 import javax.annotation.PostConstruct
 
 @RestController
-class QueryRestResource(val personRepository: PersonRepository) {
-
+class QueryRestResource(val personRepository: PersonRepository,
+                        val peopleDataFetcher: PeopleDataFetcher) {
   companion object {
     private val log = LoggerFactory.getLogger(QueryRestResource::class.simpleName)
   }
@@ -30,7 +29,9 @@ class QueryRestResource(val personRepository: PersonRepository) {
   fun loadSchema() {
     val schemaFile = schemaResource.file
     val registry = SchemaParser().parse(schemaFile)
-    val wiring = RuntimeWiring.newRuntimeWiring().build()
+    val wiring = RuntimeWiring.newRuntimeWiring()
+        .type("Query", { it.dataFetcher("people", peopleDataFetcher) })
+        .build()
     val schema = SchemaGenerator().makeExecutableSchema(registry, wiring)
     graphQL = GraphQL.newGraphQL(schema).build()
   }
@@ -39,9 +40,11 @@ class QueryRestResource(val personRepository: PersonRepository) {
   fun index(@RequestBody req: Map<String, String>): Map<String, Any> {
     val query = req["query"].orEmpty()
     log.info("query: {}", query)
-//    val executionResult = graphQL.execute(query)
+    val executionResult = graphQL.execute(query)
+    val errors = executionResult.errors
+    log.info("errors: {}", errors)
 //    val data = executionResult.getData()
-    return mapOf("query" to query)
+    return mapOf("query" to errors)
   }
 
   @GetMapping("/")
