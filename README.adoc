@@ -19,3 +19,7 @@ gradle wrapper
 bash gradlew build bRun
 # or bash gradlew as; bash build/libs/*.jar
 ----
+
+== rtfm
+
+. link:https://docs.spring.io/spring-data/rest/docs/current/reference/html/#_the_hal_browser[hap browser]

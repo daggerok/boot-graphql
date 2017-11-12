@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController
 class RestResource {
 
   @Value("classpath:graphql/schema.graphqls")
-  lateinit var schema: Resource
+  lateinit var schemaResource: Resource
 
-  @GetMapping
-  fun index() = mapOf("scema" to schema)
+  @GetMapping("/")
+  fun index() = mapOf("scema" to schemaResource.toString())
 }
 
 @SpringBootApplication
