@@ -4,7 +4,7 @@ This repository contains spring-boor + graphql-java example using awesome kotlin
 
 == graphql
 
-. query people endpoint
+.query people endpoint
 ----
 echo '{"query":"{ people { id name } }"}' | http post :8080
 HTTP/1.1 200
@@ -29,7 +29,7 @@ HTTP/1.1 200
 }
 ----
 
-. query person by it's id
+.query person by it's id
 ----
 echo '{"query":"{ person(id: \"1\") { name addressId } }"}' | http post :8080
 HTTP/1.1 200
