@@ -1,0 +1,21 @@
+= GraphQL | Spring Boot image:https://travis-ci.org/daggerok/boot-grapgql.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/boot-grapgql"]
+
+This repository contains spring-boor + graphql-java example
+
+== maven
+
+.build and run using maven wrapper
+----
+mvn -N io.takari:maven:wrapper
+bash mvnw package spring-boot:run
+# or bash mvnw package -DskipTests; java -jar target/*.jar
+----
+
+== gradle
+
+.build and run using gradle wrapper
+----
+gradle wrapper
+bash gradlew build bRun
+# or bash gradlew as; bash build/libs/*.jar
+----
