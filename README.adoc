@@ -1,6 +1,6 @@
 = GraphQL | Spring Boot image:https://travis-ci.org/daggerok/boot-graphql.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/boot-graphql"]
 
-This repository contains spring-boor + graphql-java example using awesome kotlin language
+This repository contains spring-boot + graphql-java example using awesome kotlin language
 
 == graphql
 
