@@ -1,5 +1,6 @@
 buildscript {
   ext {
+    graphqlVersion = "5.0"
     kotlinVersion = "1.1.51"
     springBootVersion = "1.5.8.RELEASE"
   }
@@ -35,6 +36,7 @@ repositories {
 }
 
 dependencies {
+  compile("com.graphql-java:graphql-java:$graphqlVersion")
   compile("org.springframework.boot:spring-boot-starter-data-jpa")
   compile("org.springframework.boot:spring-boot-starter-data-rest")
   compile("org.springframework.data:spring-data-rest-hal-browser")
