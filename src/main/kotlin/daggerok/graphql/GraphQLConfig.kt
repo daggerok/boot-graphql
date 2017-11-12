@@ -1,4 +1,4 @@
-package daggerok.domain
+package daggerok.graphql
 
 import graphql.GraphQL
 import graphql.schema.idl.RuntimeWiring
@@ -14,7 +14,7 @@ import org.springframework.core.io.Resource
 class GraphQLConfig(val peopleDataFetcher: PeopleDataFetcher,
                     val personDataFetcher: PersonDataFetcher) {
 
-  @Value("classpath:graphql/schema.graphqls")
+  @Value("classpath:/schema.graphqls")
   lateinit var schemaResource: Resource
 
   @Bean

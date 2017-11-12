@@ -1,5 +1,7 @@
-package daggerok.domain
+package daggerok.graphql
 
+import daggerok.domain.Person
+import daggerok.domain.PersonRepository
 import graphql.schema.DataFetcher
 import graphql.schema.DataFetchingEnvironment
 import org.springframework.stereotype.Service

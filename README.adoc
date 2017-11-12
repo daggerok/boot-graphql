@@ -2,6 +2,48 @@
 
 This repository contains spring-boor + graphql-java example using awesome kotlin language
 
+== graphql
+
+. query people endpoint
+----
+echo '{"query":"{ people { id name } }"}' | http post :8080
+HTTP/1.1 200
+# skip headers...
+{
+    "data": {
+        "people": [
+            {
+                "id": 1,
+                "name": "Max"
+            },
+            {
+                "id": 2,
+                "name": "Bax"
+            },
+            {
+                "id": 3,
+                "name": "Fax"
+            }
+        ]
+    }
+}
+----
+
+. query person by it's id
+----
+echo '{"query":"{ person(id: \"1\") { name addressId } }"}' | http post :8080
+HTTP/1.1 200
+# skip headers
+{
+    "data": {
+        "person": {
+            "addressId": 1,
+            "name": "Max"
+        }
+    }
+}
+----
+
 == maven
 
 .build and run using maven wrapper

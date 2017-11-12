@@ -5,7 +5,7 @@
 
   <groupId>daggerok</groupId>
   <artifactId>boot-grathql</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <packaging>jar</packaging>
 
   <name>boot-grathql</name>
@@ -84,9 +84,11 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+<!--
         <configuration>
           <executable>true</executable>
         </configuration>
+-->
       </plugin>
       <plugin>
         <artifactId>kotlin-maven-plugin</artifactId>

@@ -20,7 +20,7 @@ apply plugin: "eclipse"
 apply plugin: "org.springframework.boot"
 
 group = "daggerok"
-version = "0.0.2"
+version = "0.0.3"
 sourceCompatibility = targetCompatibility = 1.8
 
 compileKotlin {
@@ -49,6 +49,8 @@ dependencies {
   testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
+/*
 springBoot {
   executable = true
 }
+*/

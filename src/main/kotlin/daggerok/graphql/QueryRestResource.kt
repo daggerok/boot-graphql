@@ -1,5 +1,6 @@
-package daggerok.domain
+package daggerok.graphql
 
+import daggerok.domain.PersonRepository
 import graphql.GraphQL
 import org.slf4j.LoggerFactory
 import org.springframework.util.CollectionUtils

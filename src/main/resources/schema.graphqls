@@ -4,10 +4,10 @@ schema {
 
 type Query {
   people: [Person]
-  person(id: Long): Person
+  person(id: String): Person
 #  TODO:
 #  addresses: [Address]
-#  address(id: Long): Address
+#  address(id: String): Address
 }
 
 type Person {

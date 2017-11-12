@@ -45,15 +45,17 @@ before_install:
 
 script:
 
-  - bash mvnw package
-  - bash target/*jar &
+  - bash mvnw clean package
+  #- bash target/*jar &
+  - java -jar target/*jar &
   - wait_for 8080
   - echo '{"query":"{ people { name } }"}' | http post :8080
   - echo '{"query":"{ people { id name } }"}' | http post :8080
   - stop_any 8080
 
-  - bash gradlew build
-  - bash build/libs/*jar &
+  - bash gradlew clean build
+  #- bash build/libs/*jar &
+  - java -jar build/libs/*jar &
   - wait_for 8080
   - echo '{"query":"{ people { id name } }"}' | http post :8080
   - echo '{"query":"{ people { name } }"}' | http post :8080
