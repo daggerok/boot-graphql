@@ -12,19 +12,50 @@ jdk:
 
 install: true
 before_install:
+  # helper wait_for function, usage: `wait_for 8080`
+  - >
+    function wait_for {
+      export port=$1
+      while [ "$(sudo lsof -t -i:${port} | wc -l)" == "0" ]; do sleep 1; done;
+    }
 
-  ## install docker-compose
-  #- sudo apt update
+  # helper stop_any function. usage: `stop_any 8080`
+  - >
+    function stop_any {
+      export port=$1
+      sudo kill $(sudo lsof -t -i:$port) | true
+    }
+
+  - sudo apt update
+
+  # HTTPie
+  - sudo apt install -y python-pip
+  - sudo pip install httpie
+
+  ## cURL
+  #- sudo apt install -y curl jq libxml2-utils
+
+  ## docker-compose
   #- sudo apt install -y python-pip curl jq libxml2-utils
-  #- sudo pip install docker-compose httpie
+  #- sudo pip install docker-compose
   #- sudo usermod -aG docker $(whoami)
 
-  # kill whatever punning on postgres / rabbitmq port
-  - sudo kill $(sudo lsof -t -i:8080) | true
+  # kill whatever running on port
+  - stop_any 8080
 
 script:
+
   - bash mvnw package
+  - bash target/*jar &
+  - wait_for 8080
+  - http :8080/h2/
+  - stop_any 8080
+
   - bash gradlew build
+  - bash build/libs/*jar &
+  - wait_for 8080
+  - http :8080/h2/
+  - stop_any 8080
 
 cache:
   directories:
