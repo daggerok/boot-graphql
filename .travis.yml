@@ -48,13 +48,15 @@ script:
   - bash mvnw package
   - bash target/*jar &
   - wait_for 8080
-  - http :8080/h2/
+  - echo '{"query":"{ people { name } }"}' | http post :8080
+  - echo '{"query":"{ people { id name } }"}' | http post :8080
   - stop_any 8080
 
   - bash gradlew build
   - bash build/libs/*jar &
   - wait_for 8080
-  - http :8080/h2/
+  - echo '{"query":"{ people { id name } }"}' | http post :8080
+  - echo '{"query":"{ people { name } }"}' | http post :8080
   - stop_any 8080
 
 cache:
