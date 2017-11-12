@@ -3,11 +3,21 @@ schema {
 }
 
 type Query {
-  peolpe: [Person]
-  person(id: String): Person
+  people: [Person]
+  person(id: Long): Person
+#  TODO:
+#  addresses: [Address]
+#  address(id: Long): Address
 }
 
 type Person {
+  id: Long
   name: String
   addressId: Long
 }
+
+#TODO:
+#type Address {
+#  id: Long
+#  name: String
+#}

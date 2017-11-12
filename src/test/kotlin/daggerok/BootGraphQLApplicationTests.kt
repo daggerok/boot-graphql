@@ -10,5 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner
 class BootGraphQLApplicationTests {
 
   @Test
-  fun contextLoads() {}
+  fun contextLoads() {
+  }
 }
