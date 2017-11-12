@@ -41,7 +41,7 @@ class TestData(val addressRepository: AddressRepository,
         .map { Person(name = it.capitalize()) }
         .map {
           val address = Address(name = "${it.name}'s address")
-          it.address = saveAddress(address)
+          it.addressId = saveAddress(address).id
           return@map it
         }
         .forEach { savePerson(it) }

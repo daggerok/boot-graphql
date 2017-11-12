@@ -7,7 +7,7 @@ import javax.persistence.*
 @Entity
 data class Person(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null,
                   var name: String? = null,
-                  @ManyToOne var address: Address? = null) : Serializable {
+                  var addressId: Long? = null) : Serializable {
 
   companion object {
     const val serialVersionUID = 2L
