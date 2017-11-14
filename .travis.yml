@@ -12,20 +12,6 @@ jdk:
 
 install: true
 before_install:
-  # helper wait_for function, usage: `wait_for 8080`
-  - >
-    function wait_for {
-      export port=$1
-      while [ "$(sudo lsof -t -i:${port} | wc -l)" == "0" ]; do sleep 1; done;
-    }
-
-  # helper stop_any function. usage: `stop_any 8080`
-  - >
-    function stop_any {
-      export port=$1
-      sudo kill $(sudo lsof -t -i:$port) | true
-    }
-
   - sudo apt update
 
   # HTTPie
@@ -39,6 +25,10 @@ before_install:
   #- sudo apt install -y python-pip curl jq libxml2-utils
   #- sudo pip install docker-compose
   #- sudo usermod -aG docker $(whoami)
+
+  # helper bash functions
+  - source <(curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/src/stop_any.bash)
+  - source <(curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/src/wait_for.bash)
 
   # kill whatever running on port
   - stop_any 8080
